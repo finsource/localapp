@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fin-Source</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="banks.js" defer></script>
+    <script src="../js/banks.js" defer></script>
 </head>
 
 <body>

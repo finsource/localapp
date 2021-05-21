@@ -56,7 +56,7 @@
                     <p>Crypto</p>
                 </a>
 
-                <a href="./src/banks.php" class="nav-items">
+                <a href="./src/indian-banks.php" class="nav-items">
                     <img src="Media/nav-item-icons/bank-building.svg" class="nav-item-icon">
                     <p>Indian Banks</p>
                 </a>
