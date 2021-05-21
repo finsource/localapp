@@ -31,12 +31,13 @@
         $msg = $_POST['user-message'];
 
         $query = "insert into form(name, mail, phone, message) values('$name', '$mail', '$phone', '$msg')";
-        $run = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        $run = mysqli_query($conn, $query) ;
+        // or die(mysqli_error($conn));
 
         if(!$run){
             echo "Connection Unsuccessful.";
         } else {
-            echo '<script>alert("Sent successfully.")</script>';
+            echo 'connection successful.';
         }
     }
     header('location: contact-us.php');

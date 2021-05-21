@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="../js/jquery.js" defer></script>
-    <script defer src="../js/contact.js"></script>
+    <!-- <script defer src="../js/contact.js"></script> -->
     <link rel="stylesheet" href="../style.css">
     <title>Fin-Source</title>
 </div>
@@ -80,15 +80,15 @@
                     <div class="contact-area-left">
                         <div class="name-section">
                             <label for="name">Your Name</label><br>
-                            <input type="text" placeholder="Enter your name here"  name="name">
+                            <input type="text" placeholder="Enter your name here"  name="name" id="name-input">
                         </div>
                         <div class="mail-section">
                             <label for="mail">Mail</label><br>
-                            <input type="email" placeholder="example@xyz.com" name="mail">
+                            <input type="email" placeholder="example@xyz.com" name="mail" id="email-input">
                         </div>
                         <div class="phone-section">
                             <label for="phone">Phone</label><br>
-                            <input type="tel" placeholder="1234567890" pattern="[0-9]{10}" name="phone">
+                            <input type="tel" placeholder="1234567890" pattern="[0-9]{10}" name="phone" id="phone-input">
                         </div>
                     </div>
                     <div class=" contact-area-right ">

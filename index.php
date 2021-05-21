@@ -105,7 +105,6 @@
                             <li id="news3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, neque.</li>
                             <li id="news4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, neque.</li>
                             <li id="news5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, neque.</li>
-                            <li id="news6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, neque.</li>
                         </ul>
                     </div>
                     <ul class="popular-today" id="popular-today">
