@@ -56,12 +56,12 @@
                     <p>Crypto</p>
                 </a>
 
-                <a href="./src/banks.php" class="nav-items">
+                <a href="./src/indian-banks.php" class="nav-items">
                     <img src="Media/nav-item-icons/bank-building.svg" class="nav-item-icon">
                     <p>Indian Banks</p>
                 </a>
 
-                <a href="./src/help.php" class="nav-items">
+                <a href="./src/help-and-support.php" class="nav-items">
                     <img src="Media/nav-item-icons/technical-support.svg" class="nav-item-icon">
                     <p>Help and support</p>
                 </a>

@@ -12,14 +12,14 @@
         if ($result) {
             $num = mysqli_num_rows($result);
             if ($num > 0) {
-                echo "Login Successfull.";
-                
+                // echo "Login Successfull.";
                 session_start();
                 $_SESSION['username'] = $username;
                 header("Location: ../index.php");
                 exit;
             } else {
                 // echo "User does not exists.";
+                // $num = 1;
                 $invaliduser = 1;
             }
         }
