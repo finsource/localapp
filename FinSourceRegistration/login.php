@@ -5,21 +5,28 @@
 
         $username = $_POST['username'];
         $password = $_POST['password'];
-
+        // $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+        // $passCheck = password_verify($password, $hashedPwd);
         $sql = "select * from registration where username='$username' and password='$password'";
-
         $result = mysqli_query($con, $sql);
+
         if ($result) {
             $num = mysqli_num_rows($result);
             if ($num > 0) {
-                // echo "Login Successfull.";
+
+                //Login Successful
                 session_start();
+                $row = mysqli_fetch_array($result);
+
+                // Declare username and profile picture throughout the session
                 $_SESSION['username'] = $username;
+                $_SESSION['profile_picture'] = $row['profileimg'];
+
                 header("Location: ../index.php");
                 exit;
             } else {
-                // echo "User does not exists.";
-                // $num = 1;
+
+                // Invalid user
                 $invaliduser = 1;
             }
         }

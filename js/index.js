@@ -27,7 +27,7 @@ async function getNews() {
         }
     );
     const data = await response.json();
-
+    // console.log(data);
     // console.log(data);
 
     let news1 = document.getElementById("news1");

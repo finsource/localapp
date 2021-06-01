@@ -29,7 +29,14 @@
                 <input type="text" id="search-text" placeholder="Search something . .">
             </div>
             <div class="profile-section">
-                <img class="profile-pic" src="Media/profile-pic.jpg" width="48px">
+                <?php
+                    if(!isset($_SESSION['username'])){
+                        echo '<img class="profile-pic" style="display:none">';
+                    } else {
+                         echo '<img class="profile-pic" src="FinSourceRegistration/'.$_SESSION['profile_picture'].'" >';
+                    }
+                ?>
+                
                 <?php
                     if(!isset($_SESSION['username'])){
                         echo '<a href="FinSourceRegistration/login.php" class="login-btn">Login</a>';

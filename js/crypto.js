@@ -74,6 +74,7 @@
 // window.onload = getCrypto();
 
 let cryptoDataArray = [];
+let cryptoPriceArray = [];
 let crypto = [];
 
 async function getCrypto() {
@@ -110,14 +111,13 @@ async function getCrypto() {
         var card_price = one.getElementsByClassName("card-price");
         var price_usd = card_price[0];
 
-        price_usd.innerText = `₹${
-      Math.round(data[0].current_price * 73 * 100) / 100}`;
+        price_usd.innerText = `₹${Math.round(data[0].current_price * 73 * 100) / 100}`;
+        cryptoPriceArray.push(`${Math.round(data[0].current_price * 73 * 100) / 100}`);
         var card_percent_change = one.getElementsByClassName("card-price-change");
 
         var percent = card_percent_change[0];
 
-        percent.innerText = `${
-      Math.round(data[0].price_change_percentage_24h * 1000) / 1000}%`;
+        percent.innerText = `${Math.round(data[0].price_change_percentage_24h * 1000) / 1000}%`;
 
         if (data[0].price_change_percentage_24h > 0) {
             percent.style.color = "#228B22";
@@ -125,33 +125,38 @@ async function getCrypto() {
             percent.style.color = "red";
         }
         cryptoDataArray.push(data[0].price_change_percentage_24h);
-        document.getElementsByTagName("BODY")[0].style.height = "100%";
     }
+    document.getElementsByTagName("BODY")[0].style.height = "100%";
 
     // this is a function made using chart.js , which gives us accurate chart of % increase and decrease of given crypto currencies.
     function makeChart() {
+        console.log(cryptoPriceArray);
         let ctx = document.getElementById("crypto-chart");
         let myChart = new Chart(ctx, {
             type: "bar",
             data: {
                 labels: crypto,
                 datasets: [{
-                    label: "% change in price",
-                    data: cryptoDataArray,
-                    backgroundColor: [
-                        "#f7931a",
-                        "#627eea",
-                        "#8dc351",
-                        "#a5a8a9",
-                        "#0033ad",
-                        "#ba9f33",
-                        "#717171",
-                        "#000000",
-                    ],
-                    borderRadius: 20,
-                    barPercentage: 0.2,
-                    barThickness: 75,
-                }, ],
+                        label: "% change in price",
+                        data: cryptoDataArray,
+                        backgroundColor: [
+                            "#f7931a",
+                            "#627eea",
+                            "#8dc351",
+                            "#a5a8a9",
+                            "#0033ad",
+                            "#ba9f33",
+                            "#717171",
+                            "#000000",
+                        ],
+                        borderRadius: 20,
+                        barPercentage: 0.2,
+                        barThickness: 75,
+                    },
+                    // {
+                    //     data: cryptoPriceArray
+                    // }
+                ],
             },
             options: {
                 responsive: true,

@@ -3,36 +3,61 @@
     $passmissmatch = 0;
     $success = 0;
     $emptypass = 0;
-
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         include 'connection.php';
 
         $username = $_POST['username'];
         $password = $_POST['password'];
         $cpassword = $_POST['cpassword'];
+        //$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+        $file = $_FILES['profile-pic'];
+        $file_name = $file['name'];
+        $file_type = $file['type'];
+        $file_size = $file['size'];
+        $file_temp_loc = $file['tmp_name'];
+        $file_err = $file['error'];
+        $file_store = 'picturestorage/'.$file_name;
+
+        if (!file_exists('picturestorage')) {
+            mkdir('picturestorage', 0777, true);
+        }
 
         $sql = "select * from registration where username='$username'";
 
         $result = mysqli_query($con, $sql);
-        if ($result) {
-            $num = mysqli_num_rows($result);
-            if ($num > 0) {
-                // echo "User already exists";
-                $userexists = 1;
-            } else {
-                if(empty($password) or empty($cpassword)){
-                    $emptypass = 1;
-                } elseif($password===$cpassword){
-                    $sql = "insert into `registration`(username, password) values('$username', '$password')";
-                    $result  = mysqli_query($con, $sql);
 
-                    if ($result) {
-                        // echo "Signed up successfully.";
-                        $success = 1;
-                        // header('location:login.php');
-                    } else {
-                        die(mysqli_error($con));
+        if ($result) {
+
+            $num = mysqli_num_rows($result);
+
+            if ($num > 0) {
+
+                // "User already exists";
+                $userexists = 1;
+            
+            } else {
+
+                if(empty($password) or empty($cpassword)){
+
+                    //Empty password
+                    $emptypass = 1;
+
+                } elseif($password===$cpassword){
+                    if(move_uploaded_file($file_temp_loc, $file_store)){
+                        $profile_picture =  $file_store;
+                        $sql = "insert into `registration`(username, password, profileimg) values('$username', '$password', '$file_store')";
+                        $result  = mysqli_query($con, $sql);
+                        if ($result) {
+
+                            // echo "Signed up successfully.";
+                            $success = 1;
+                            // header('location:login.php');
+                        } else {
+                            die(mysqli_error($con));
+                        }
                     }
+                    
                 } else {
                     // echo "Passwords did not match !!";
                     $passmissmatch = 1;
@@ -107,7 +132,7 @@
 </head>
 
 <body>
-    <form action="" method="POST" class="signup-card">
+    <form action="" method="POST" class="signup-card" enctype="multipart/form-data">
         <h2>Signup to FinSource</h2>
         <?php
 
@@ -132,6 +157,8 @@
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <input type="password" name="cpassword" placeholder="Confirm Password">
+        <label for="Profile Picture">Please add a profile picture : </label>
+        <input type="file" name="profile-pic" placeholder="Profile picture">
         <input type="submit" value="Sign up" name="submit" id="login-btn">
 
         <p>Alredy have an account ?</p>
